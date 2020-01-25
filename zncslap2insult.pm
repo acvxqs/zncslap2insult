@@ -67,8 +67,8 @@ sub OnChanAction {
     if (POE::Component::IRC::Common::has_formatting($message)) {
         $message = POE::Component::IRC::Common::strip_formatting($message);
     }
-    if (my ($action) = $message=~/^slaps\s+\Q$MyNick\E\s+(?:(around a bit |around ))?with\s+(.+)$/i) {
-        $self->put_chan($chan,"$nick thou art a $c1[rand @c1] $c2[rand @c2] $c3[rand @c3]!");
+    if ($message=~/^slaps\s+\Q$MyNick\E(.*)$/i) {
+        $self->put_chan($chan,"$nick, thou $c1[rand @c1] $c2[rand @c2] $c3[rand @c3]!");
     }
 
     return $ZNC::CONTINUE;
